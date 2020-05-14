@@ -5,10 +5,10 @@
  * Description: Sim Video Player is a YouTube and Vimeo player, this plugin will create a beatiful HTML5, YouTube and Vimeo media player for all Youtube and Vimeo Videos using the Plyr library by Sam Potts
  * Author:      SwitchWebdev.com
  * Author URI:  https://switchwebdev.com
- * Version:     0.2.1
+ * Version:     0.3.1
  * License:     GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: wp-plyr
+ * Text Domain: sim-video-player
  *
  * Requires PHP: 5.6+
  * Tested up to PHP: 7.4
@@ -39,109 +39,36 @@
     }
 
   # plugin directory
-	  define("WPPLYR_VERSION", '0.2.1');
+	  define("WPPLYR_VERSION", '0.3.1');
 
   # plugin directory
-    define("WPPLYR_DIR", dirname(__FILE__));
+    define("WPPLYR_DIR", plugin_dir_path( __FILE__ ));
 
   # plugin url
     define("WPPLYR_URL", plugins_url( "/",__FILE__ ));
 #  -----------------------------------------------------------------------------
 
-
-/**
- *
- */
-class Sim_Video_Player {
-
-  function __construct(){
-    add_action( 'wp_enqueue_scripts', array( $this , 'simvideo_scripts') );
-    add_filter( 'embed_oembed_html', array( $this , 'simplyer_html'), 99, 4 );
-  }
-
   /**
-   * load the scripts
-   * @return [type] [description]
+   * Load the Plyr class
+   * @var [type]
    */
-  public function simvideo_scripts() {
-
-    // load css
-    wp_enqueue_style( 'video-plyr-css', plugin_dir_url( __FILE__ ) . 'vendor/plyr/css/plyr.css', array(), WPPLYR_VERSION, 'all' );
-
-  	// load js
-  	wp_enqueue_script( 'vid-plyr', plugin_dir_url( __FILE__ ) . 'vendor/plyr/src/js/plyr.js', array(), WPPLYR_VERSION, true );
-  	wp_enqueue_script( 'video-player', plugin_dir_url( __FILE__ ) . 'assets/js/plyr-video-player.js', array(), WPPLYR_VERSION , true);
-  }
+  require plugin_dir_path( __FILE__ ) . 'src/class-video-plyr.php';
 
   /**
-   * [oembed description]
-   * @return [type] [description]
-   */
-  public function oembed(){
-    include_once ABSPATH . WPINC . '/class-wp-oembed.php';
-  	$wp_oembed = new WP_oEmbed();
-    return $wp_oembed;
-  }
-
-  /**
-   * simplayer_html
+   * simplayer()
    *
-   * Outputs the HTML
-   * @param  [type] $html    [description]
-   * @param  [type] $url     [description]
-   * @param  [type] $attr    [description]
-   * @param  [type] $post_id [description]
-   * @return string
-   * @credit https://wordpress.org/plugins/plyr/
+   * helper for the player html
+   * @param  string $video_provider [description]
+   * @param  string $vid_id         [description]
+   * @return [type]                 [description]
    */
-  public function simplyer_html( $html, $url, $attr, $post_id ) {
-
-  	$args = array();
-  	$provider = $this->oembed()->get_provider( $url );
-
-    /**
-     * [if description]
-     * @var [type]
-     */
-  	if ( !$provider || false === $data = $this->oembed()->fetch( $provider, $url, $args ) )
-  		return false;
-
-    /**
-     * if not video exit
-     * @var [type]
-     */
-  	if( 'video' !== $data->type )
-  		return $html;
-
-    /**
-     * make sure this is a video from youtube or vimeo
-     * @var [type]
-     */
-  	if( !in_array( $data->provider_name, array( 'Vimeo', 'YouTube' ) ) )
-  		return $html;
-
-    /**
-     * get the video ID
-     * @var [type]
-     */
-  	if( $data->provider_name == 'YouTube' ) {
-  		$splode = array_reverse( explode('/', $data->thumbnail_url) );
-  		$video_id = $splode[1];
-  	}else{
-  		$video_id = $data->video_id;
-  	}
-
-    /**
-     * HTML Output
-     * @var string
-     */
-  	$html = '<div id="player" data-plyr-provider="'.strtolower($data->provider_name).'" data-plyr-embed-id="'.$video_id.'"></div>';
-    return $html;
+  function simplayer($video_provider = 'YouTube', $vid_id = ''){
+    $player_html = '<div class="js-simplayer" data-plyr-provider="'.strtolower($video_provider).'" data-plyr-embed-id="'.$vid_id.'"></div>';
+    return $player_html;
   }
-}
 
-/**
- * inititate the player
- * @var Sim_Video_Player
- */
-$sm_vid_player = new Sim_Video_Player();
+  /**
+   * inititate the player
+   * @var Sim_Video_Player
+   */
+  $simvideo_player = Sim_Video_Player\video_player();
