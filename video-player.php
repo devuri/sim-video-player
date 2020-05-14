@@ -135,9 +135,22 @@ class Sim_Video_Player {
      * HTML Output
      * @var string
      */
-  	$html = '<div id="player" data-plyr-provider="'.strtolower($data->provider_name).'" data-plyr-embed-id="'.$video_id.'"></div>';
+  	$html = simplayer($data->provider_name,$video_id);
     return $html;
   }
+}
+
+/**
+ * simplayer()
+ *
+ * helper for the player html
+ * @param  string $video_provider [description]
+ * @param  string $vid_id         [description]
+ * @return [type]                 [description]
+ */
+function simplayer($video_provider = 'YouTube', $vid_id = ''){
+  $player_html = '<div id="player" data-plyr-provider="'.strtolower($video_provider).'" data-plyr-embed-id="'.$vid_id.'"></div>';
+  return $player_html;
 }
 
 /**
