@@ -1,2 +1,2 @@
-# sim-video-player
+# Sim Video Player
 Sim Video Player
