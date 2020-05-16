@@ -5,7 +5,7 @@
  * Description: Sim Video Player is a YouTube and Vimeo player, this plugin will create a beatiful HTML5, YouTube and Vimeo media player for all Youtube and Vimeo Videos using the Plyr library by Sam Potts
  * Author:      SwitchWebdev.com
  * Author URI:  https://switchwebdev.com
- * Version:     0.3.1
+ * Version:     0.4.1
  * License:     GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: sim-video-player
@@ -39,7 +39,7 @@
     }
 
   # plugin directory
-	  define("WPPLYR_VERSION", '0.3.1');
+	  define("WPPLYR_VERSION", '0.4.1');
 
   # plugin directory
     define("WPPLYR_DIR", plugin_dir_path( __FILE__ ));
