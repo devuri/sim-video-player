@@ -3,6 +3,7 @@
 ## Sim Video Player
 YouTube and Vimeo player for WordPress, this plugin will create a beautiful HTML5, YouTube and Vimeo media player for all YouTube and Vimeo Videos
 
+![Big_Buck_Bunny](https://user-images.githubusercontent.com/4777400/82112334-8d5ad580-9711-11ea-89b6-1af6628e058e.png)
 
 ### Prerequisites
 
