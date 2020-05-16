@@ -19,7 +19,7 @@ This project is licensed under the **GNU General Public License v2.0** - see the
 
 ## Acknowledgments
 * [Plyr](https://github.com/sampotts/plyr) HTML5, YouTube and Vimeo player
-* [Plyr WordPress Plugin] https://wordpress.org/plugins/plyr/
+* [Plyr WordPress Plugin](https://wordpress.org/plugins/plyr/)
 * wp codex
 * Inspiration: client work
 
