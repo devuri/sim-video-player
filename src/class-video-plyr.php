@@ -2,7 +2,6 @@
 
 /**
  * setup the Plyr class
- * @var [type]
  */
 namespace Sim_Video_Player;
 
@@ -10,7 +9,7 @@ class Video_Plyr {
 
   /**
    * return the class instance
-   * @var [type]
+   * @var
    */
   public static $instance;
 
@@ -21,7 +20,7 @@ class Video_Plyr {
 
   /**
    * load the scripts
-   * @return [type] [description]
+   * @return
    */
   public function simvideo_scripts() {
 
@@ -35,8 +34,8 @@ class Video_Plyr {
 
 	/**
 	 * [instance description]
-	 * @param  boolean $init [description]
-	 * @return [type]        [description]
+	 * @param  boolean $init
+	 * @return
 	 */
 	public static function instance() {
 
@@ -48,7 +47,7 @@ class Video_Plyr {
 
   /**
    * [oembed description]
-   * @return [type] [description]
+   * @return
    */
   public function oembed(){
     include_once ABSPATH . WPINC . '/class-wp-oembed.php';
@@ -60,10 +59,10 @@ class Video_Plyr {
    * simplayer_html
    *
    * Outputs the HTML
-   * @param  [type] $html    [description]
-   * @param  [type] $url     [description]
-   * @param  [type] $attr    [description]
-   * @param  [type] $post_id [description]
+   * @param  [type] $html
+   * @param  [type] $url
+   * @param  [type] $attr
+   * @param  [type] $post_id
    * @return string
    * @credit https://wordpress.org/plugins/plyr/
    */
@@ -118,11 +117,11 @@ class Video_Plyr {
  */
 if (! function_exists('video_player')) {
 	/**
-	 * sim_video_player()
+	 * get_video_player()
 	 *
 	 * @return object
 	 */
-	function video_player() {
+	function get_video_player() {
 		// new up the object
 		return Video_Plyr::instance();
 	}
