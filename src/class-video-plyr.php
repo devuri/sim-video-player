@@ -21,7 +21,7 @@ class Video_Plyr {
 
   /**
    * load the scripts
-   * @return [type] [description]
+   * @return 
    */
   public function simvideo_scripts() {
 
@@ -34,9 +34,9 @@ class Video_Plyr {
   }
 
 	/**
-	 * [instance description]
-	 * @param  boolean $init [description]
-	 * @return [type]        [description]
+	 * new instance
+	 * @param  boolean $init
+	 * @return object
 	 */
 	public static function instance() {
 
@@ -47,8 +47,8 @@ class Video_Plyr {
   }
 
   /**
-   * [oembed description]
-   * @return [type] [description]
+   * build oembed
+   * @return object
    */
   public function oembed(){
     include_once ABSPATH . WPINC . '/class-wp-oembed.php';
@@ -60,10 +60,10 @@ class Video_Plyr {
    * simplayer_html
    *
    * Outputs the HTML
-   * @param  [type] $html    [description]
-   * @param  [type] $url     [description]
-   * @param  [type] $attr    [description]
-   * @param  [type] $post_id [description]
+   * @param $html
+   * @param $url
+   * @param $attr
+   * @param $post_id
    * @return string
    * @credit https://wordpress.org/plugins/plyr/
    */
@@ -73,7 +73,7 @@ class Video_Plyr {
   	$provider = $this->oembed()->get_provider( $url );
 
     /**
-     * [if description]
+     * oembed check
      * @var [type]
      */
   	if ( !$provider || false === $data = $this->oembed()->fetch( $provider, $url, $args ) )
@@ -81,14 +81,12 @@ class Video_Plyr {
 
     /**
      * if not video exit
-     * @var [type]
      */
   	if( 'video' !== $data->type )
   		return $html;
 
     /**
      * make sure this is a video from youtube or vimeo
-     * @var [type]
      */
   	if( !in_array( $data->provider_name, array( 'Vimeo', 'YouTube' ) ) )
   		return $html;
