@@ -33,7 +33,7 @@ class Video_Plyr {
   }
 
 	/**
-	 * [instance description]
+	 * new instance
 	 * @param  boolean $init
 	 * @return
 	 */
@@ -46,7 +46,7 @@ class Video_Plyr {
   }
 
   /**
-   * [oembed description]
+   * oembed
    * @return
    */
   public function oembed(){
@@ -59,10 +59,10 @@ class Video_Plyr {
    * simplayer_html
    *
    * Outputs the HTML
-   * @param  [type] $html
-   * @param  [type] $url
-   * @param  [type] $attr
-   * @param  [type] $post_id
+   * @param  $html
+   * @param  $url
+   * @param  $attr
+   * @param  $post_id
    * @return string
    * @credit https://wordpress.org/plugins/plyr/
    */
@@ -72,29 +72,26 @@ class Video_Plyr {
   	$provider = $this->oembed()->get_provider( $url );
 
     /**
-     * [if description]
-     * @var [type]
+     * check oembed
+     * @var boolean
      */
   	if ( !$provider || false === $data = $this->oembed()->fetch( $provider, $url, $args ) )
   		return false;
 
     /**
      * if not video exit
-     * @var [type]
      */
   	if( 'video' !== $data->type )
   		return $html;
 
     /**
      * make sure this is a video from youtube or vimeo
-     * @var [type]
      */
   	if( !in_array( $data->provider_name, array( 'Vimeo', 'YouTube' ) ) )
   		return $html;
 
     /**
      * get the video ID
-     * @var [type]
      */
   	if( $data->provider_name == 'YouTube' ) {
   		$splode = array_reverse( explode('/', $data->thumbnail_url) );
